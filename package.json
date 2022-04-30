@@ -1,6 +1,6 @@
 {
   "name": "@code-hike/classer-vue3",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "private": false,
   "description": "A little package to make Vue3 component libraries interoperable with most styling solutions.",
   "keywords": [
@@ -37,6 +37,10 @@
   "workspaces": [
     "playground"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "tsup",
     "build:vite": "vite build",
