@@ -1,0 +1,17 @@
+dist/*
+build/*
+node_modules/*
+__tests__
+setupTests.ts
+src/index.ts
+.eslintrc.js
+.stylelintrc.js
+babel.config.js
+setupTests.ts
+tsconfig.json
+**/*.css
+**/*.scss
+**/*.less
+**/*.module.css
+**/*.module.scss
+**/*.module.less
