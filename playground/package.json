@@ -1,0 +1,20 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --port 3333 --open",
+    "dev:usepack": "cross-env USEPACK=true vite --port 3100 --open",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
+    "vue-loader": "^16.8.3"
+  }
+}
