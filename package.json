@@ -1,6 +1,6 @@
 {
   "name": "code-hike-classer-vue3",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "A little package to make Vue3 component libraries interoperable with most styling solutions.",
   "keywords": [
@@ -56,7 +56,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "core-js": "^3.22.3",
+    "core-js": "^3.22.4",
     "vue": "^3.2.33"
   },
   "devDependencies": {
@@ -64,7 +64,7 @@
     "@babel/plugin-transform-typescript": "^7.16.8",
     "@babel/preset-env": "^7.16.10",
     "@babel/preset-typescript": "^7.16.7",
-    "@swc/core": "^1.2.174",
+    "@swc/core": "^1.2.175",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/user-event": "^14.1.1",
     "@testing-library/vue": "^6.5.1",
@@ -91,10 +91,10 @@
     "npm": "^8.8.0",
     "shelljs": "^0.8.5",
     "tsup": "^5.12.6",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.6",
+    "typescript": "^4.6.4",
+    "vite": "^2.9.7",
     "vite-plugin-dts": "^1.1.1",
-    "vitest": "^0.10.0",
+    "vitest": "^0.10.2",
     "vue-tsc": "^0.34.11"
   },
   "packageManager": "npm@8.8.0"
