@@ -8,7 +8,7 @@ export default defineConfig({
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
       '#/': `${path.resolve(__dirname, '../dist')}/`,
-      '@code-hike/classer-vue3': path.resolve(__dirname, process.env.USEPACK === 'true' ? '../dist' : '../src'),
+      'code-hike-classer-vue3': path.resolve(__dirname, process.env.USEPACK === 'true' ? '../dist' : '../src'),
     },
   },
   plugins: [

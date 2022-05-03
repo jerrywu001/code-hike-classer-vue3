@@ -1,5 +1,8 @@
 > A little package to make React component libraries interoperable with most styling solutions.
 
+## online demo
+
+https://codesandbox.io/s/stupefied-https-sfx0uz
 
 ## install
 
@@ -7,10 +10,14 @@
 npm i
 
 # with usage demo
-npm run play
+npm run dev
 ```
 
 ## classer + emotion usage
+
+> full demo:
+>
+> npm run dev
 
 - Provider
 
@@ -30,14 +37,14 @@ const motion = css`
 </script>
 
 <template>
-  <ClasserProvider
+  <classer-provider
     :classes="{
       'sp-title': 'title-1 title-2',
       'sp-motion': motion,
     }"
   >
-    <Child />
-  </ClasserProvider>
+    <child />
+  </classer-provider>
 </template>
 ```
 

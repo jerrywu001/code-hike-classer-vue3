@@ -19,7 +19,7 @@ export default defineConfig({
   dts: './src/index.ts',
   sourcemap: false,
   splitting: false,
-  minify: true,
+  // minify: true,
   esbuildPlugins: [
     babel(),
   ],

@@ -1,13 +1,13 @@
 import {
-  computed,
   DefineComponent,
   defineComponent,
-  getCurrentInstance,
   inject,
   InjectionKey,
   PropType,
   provide,
-  unref,
+  reactive, SetupContext,
+  watch,
+  h, Fragment,
 } from 'vue';
 
 declare type AppClassName = string;
@@ -18,41 +18,44 @@ interface ClasserProviderProp {
   classes: Classes;
 }
 
-const ClasserProviderKey: InjectionKey<Classes> = Symbol('classerProviderKey');
+const ClasserProviderKey: InjectionKey<ClasserProviderProp> = Symbol('classerProviderKey');
 
 const ClasserProvider = defineComponent({
   name: 'ClasserProvider',
-  inheritAttrs: true,
+  inheritAttrs: false,
   props: {
     classes: {
       type: Object as PropType<Classes>,
       required: true,
+      default() {
+        return {} as Classes;
+      },
     },
   },
   setup(props: ClasserProviderProp, { slots }) {
-    const mergedClass = useMerge({}, props.classes);
+    const context = reactive({ classes: { ...props.classes } });
 
-    provide(ClasserProviderKey, mergedClass);
+    provide(ClasserProviderKey, context);
 
-    return () => (
-      <div>{ slots.default ? slots.default() : null }</div>
-    );
+    watch(() => props.classes, () => {
+      context.classes = props.classes;
+    }, { deep: true });
+
+    return () => slots.default?.();
   },
 }) as DefineComponent<ClasserProviderProp>;
 
-function useClasser(libClassPrefix: string, innerClasses = {} as Classes) {
-  const instance = (getCurrentInstance() || {}) as any;
-  const provides: Record<symbol, any> = instance.provides || {};
-  const hasContext = !!provides[ClasserProviderKey as symbol];
-  const outer = hasContext ? inject(ClasserProviderKey) : null;
-
-  const mergedClass = useMerge(outer || {}, innerClasses);
-  return getClasser.call(null, libClassPrefix, mergedClass);
+function useClasser(libClassPrefix: string, customClasses = {} as Classes) {
+  return getClasser.call(null, libClassPrefix, customClasses);
 }
 
-function getClasser(libClassPrefix: string, classes = {} as Classes) {
+function getClasser(libClassPrefix: string, customClasses: Classes) {
   return function classer() {
     const libClassSuffixList: string[] = [];
+
+    const outer = inject(ClasserProviderKey, { classes: {} });
+    const classes = useMerge(outer.classes || {}, customClasses);
+
     for (let i = 0; i < arguments.length; i++) {
       libClassSuffixList[i] = arguments[i];
     }
@@ -60,21 +63,25 @@ function getClasser(libClassPrefix: string, classes = {} as Classes) {
       libClassSuffixList.map((libClassSuffix) => libClassPrefix +
         (libClassPrefix && libClassSuffix ? '-' : '') +
         libClassSuffix);
+
     const outputList = libClassList.slice();
     libClassList.forEach((libClass) => {
       if (libClass in classes) {
         outputList.push(classes[libClass]);
       }
     });
+
     return outputList.join(' ');
   } as (...libClassSuffixList: string[]) => string;
 }
 
 function useMerge(outer: Classes, inner: Classes) {
-  const mergedClassed = computed(() => ({ ...outer, ...inner } as Classes));
-  return unref(mergedClassed);
+  return { ...outer, ...inner } as Classes;
 }
 
-export { ClasserProvider, ClasserProviderKey, useClasser, Classes };
+function getClasserContext(): { classes: Classes } {
+  return inject(ClasserProviderKey, { classes: {} as Classes });
+}
 
-export default ClasserProvider;
+export { ClasserProvider, getClasserContext, useClasser };
+export type { Classes, ClasserProviderProp };

@@ -20,7 +20,7 @@
     "#/*": [
       "dist/*"
     ],
-    "@code-hike/classer-vue3": [
+    "code-hike-classer-vue3": [
       "src/index.ts"
     ]
   },
