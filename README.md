@@ -2,7 +2,7 @@
 
 ## online demo
 
-https://codesandbox.io/s/stupefied-https-sfx0uz
+https://stackblitz.com/edit/vitejs-vite-oqvfsr
 
 ## install
 
