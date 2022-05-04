@@ -1,8 +1,21 @@
 <template>
-  <div :style="{ marginBottom: '12px', border: '1px #ddd dashed', padding: '12px' }">
+  <pre><code>{{ context.classes }}</code></pre>
+  <div
+    :style="{
+      marginBottom: '12px',
+      border: '1px #ddd dashed',
+      padding: '12px',
+    }"
+  >
     <p>Component in [ClasserProvider]</p>
     <button :class="['btn', c('title', 'motion', 'other')]">
       {{ outer ? 'Component outside provider' : 'Child in provider' }}
+    </button>
+
+    <br>
+    <br>
+    <button @click="chagneTitleProperty">
+      change title property with context
     </button>
 
     <leaf-child />
@@ -20,14 +33,20 @@ defineProps({
 
 // inject() can only be used inside setup().
 // so you can only use getClasserContext() inside setup().
-// you can use eventbus, and change context in App.vue
 const context = getClasserContext();
+
+const chagneTitleProperty = () => {
+  context.classes['sp-title'] = 'title-7';
+};
 
 const c = useClasser('sp', { 'sp-other': 'custom-class' });
 
-watch(() => context.classes, () => {
-  console.log('Child: ctx change', context.classes);
-});
+watch(
+  () => context.classes,
+  () => {
+    console.log('Child: ctx change', context.classes);
+  },
+);
 </script>
 
 <style>

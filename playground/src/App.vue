@@ -1,3 +1,48 @@
+<template>
+  <div>
+    <div class="provider">
+      <h3>provider 1 (reactive):</h3>
+      <p>because classes are reactive</p>
+
+      <button @click="changeMotionProperty">change motion property</button>
+      <button @click="changeTitleProperty">change title property</button>
+      <button @click="changeProvideState">change provide state</button>
+
+      <classer-provider :classes="classes">
+        <child />
+      </classer-provider>
+    </div>
+
+    <hr>
+
+    <div class="provider">
+      <h3>provider 2:</h3>
+
+      <classer-provider :classes="classes2">
+        <child />
+      </classer-provider>
+
+      <button @click="changeTitleValue">
+        change title property in App.vue
+      </button>
+
+      <p>
+        classes2 is a normal variable, non-reactive<span
+          :style="{ color: 'orange' }"
+        >(You can see that it doesn't work)</span>
+      </p>
+    </div>
+
+    <hr>
+
+    <div class="provider">
+      <h3>Component outside provider (can not use the context):</h3>
+
+      <child :outer="true" />
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue';
 import { css } from '@emotion/css';
@@ -55,53 +100,7 @@ const changeProvideState = () => {
 const changeTitleValue = () => {
   classes2['sp-title'] = 'title-3 title-4';
 };
-
 </script>
-
-<template>
-  <div>
-    <div class="provider">
-      <h3>provider 1 (reactive):</h3>
-
-      <button @click="changeMotionProperty">change motion property</button>
-      <button @click="changeTitleProperty">change title property</button>
-      <button @click="changeProvideState">change provide state</button>
-
-      <br>
-      <br>
-
-      <classer-provider :classes="classes">
-        <child />
-      </classer-provider>
-
-      <pre><code>{{ classes }}</code></pre>
-    </div>
-
-    <hr>
-
-    <div class="provider">
-      <h3>provider 2 (not reactive, context can only use once):</h3>
-      <classer-provider
-        :classes="classes2"
-      >
-        <child />
-      </classer-provider>
-
-      <button @click="changeTitleValue">change title property</button>
-      <span :style="{ color: 'orange', fontSize: '14px' }">(You can see that it doesn't work)</span>
-
-      <pre><code>{{ classes2 }}</code></pre>
-    </div>
-
-    <hr>
-
-    <div class="provider">
-      <h3>Component outside provider (can not use the context):</h3>
-
-      <child :outer="true" />
-    </div>
-  </div>
-</template>
 
 <style>
 .provider {
@@ -123,14 +122,25 @@ const changeTitleValue = () => {
   cursor: pointer;
 }
 
-.title-1, .title-2 {
+.title-1,
+.title-2 {
   font-size: 12px;
 }
-.title-3, .title-4 {
+.title-3,
+.title-4 {
   font-size: 14px;
 }
-.title-5, .title-6 {
+.title-5,
+.title-6 {
   font-size: 16px;
+}
+
+.title-7 {
+  font-size: 20px;
+}
+
+.title-8 {
+  font-size: 22px;
 }
 
 hr {
