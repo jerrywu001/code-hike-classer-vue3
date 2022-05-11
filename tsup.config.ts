@@ -20,7 +20,7 @@ export default defineConfig({
   legacyOutput: true,
   sourcemap: false,
   splitting: false,
-  // minify: true,
+  minify: true,
   esbuildPlugins: [
     babel(),
   ],
