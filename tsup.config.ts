@@ -17,6 +17,7 @@ export default defineConfig({
   shims: false,
   clean: true,
   dts: './src/index.ts',
+  legacyOutput: true,
   sourcemap: false,
   splitting: false,
   // minify: true,
