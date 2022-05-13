@@ -54,7 +54,7 @@ function getClasser(libClassPrefix: string, customClasses: Classes) {
     const libClassSuffixList: string[] = [];
 
     const outer = inject(ClasserProviderKey, { classes: {} });
-    const classes = useMerge(outer.classes || {}, customClasses);
+    const classes = useMerge(outer?.classes || {}, customClasses);
 
     for (let i = 0; i < arguments.length; i++) {
       libClassSuffixList[i] = arguments[i];
