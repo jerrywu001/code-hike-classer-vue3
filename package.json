@@ -1,6 +1,6 @@
 {
   "name": "code-hike-classer-vue3",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "description": "A little package to make Vue3 component libraries interoperable with most styling solutions.",
   "keywords": [
