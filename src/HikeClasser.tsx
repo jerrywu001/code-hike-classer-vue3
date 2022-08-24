@@ -5,9 +5,8 @@ import {
   InjectionKey,
   PropType,
   provide,
-  reactive, SetupContext,
+  reactive,
   watch,
-  h, Fragment,
 } from 'vue';
 
 declare type AppClassName = string;
