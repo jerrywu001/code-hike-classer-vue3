@@ -32,6 +32,7 @@ const ClasserProvider = defineComponent({
     },
   },
   setup(props: ClasserProviderProp, { slots }) {
+    // eslint-disable-next-line vue/no-setup-props-destructure
     const context = reactive({ classes: { ...props.classes } });
 
     provide(ClasserProviderKey, context);

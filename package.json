@@ -20,9 +20,27 @@
   "license": "MIT",
   "author": "jerrywu001 <57242263@163.com>",
   "main": "./dist/index.js",
-  "module": "./dist/esm/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./*": [
+      "./*",
+      "./*.d.ts"
+    ]
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
   "files": [
     "dist",
     "package.json",
@@ -46,45 +64,46 @@
     "prepublishOnly": "npm run build",
     "release": "bumpp --commit --tag --push && npm publish",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.18.10",
-    "@babel/plugin-transform-typescript": "^7.18.12",
-    "@babel/preset-env": "^7.18.10",
-    "@babel/preset-typescript": "^7.18.6",
-    "@swc/core": "^1.2.242",
-    "@testing-library/jest-dom": "^5.16.5",
+    "@babel/plugin-transform-runtime": "^7.22.10",
+    "@babel/plugin-transform-typescript": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-typescript": "^7.22.5",
+    "@swc/core": "^1.3.75",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/user-event": "^14.4.3",
-    "@testing-library/vue": "^6.6.1",
-    "@types/node": "^18.7.12",
-    "@typescript-eslint/eslint-plugin": "^5.34.0",
-    "@typescript-eslint/parser": "^5.34.0",
-    "@vitejs/plugin-vue": "^3.0.3",
-    "@vitejs/plugin-vue-jsx": "^2.0.0",
-    "@vitest/ui": "^0.22.1",
-    "@vue/babel-plugin-jsx": "^1.1.1",
-    "@vue/eslint-config-typescript": "^11.0.0",
-    "autoprefixer": "^10.4.8",
-    "bumpp": "^8.2.1",
-    "core-js": "^3.24.1",
+    "@testing-library/vue": "^7.0.0",
+    "@types/node": "^18.17.4",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "@vitest/ui": "^0.34.1",
+    "@vue/babel-plugin-jsx": "^1.1.5",
+    "@vue/eslint-config-typescript": "^11.0.3",
+    "autoprefixer": "^10.4.14",
+    "bumpp": "^9.1.1",
+    "core-js": "^3.32.0",
     "esbuild-plugin-babel": "^0.2.3",
-    "eslint": "^8.22.0",
+    "eslint": "^8.46.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-vue": "^9.4.0",
-    "husky": "^8.0.1",
-    "jsdom": "^20.0.0",
-    "lint-staged": "^13.0.3",
-    "npm": "^8.18.0",
-    "tsup": "^6.2.2",
-    "typescript": "^4.7.4",
-    "vite": "^3.0.9",
-    "vite-plugin-dts": "^1.4.1",
-    "vitest": "^0.22.1",
-    "vue-tsc": "^0.40.1"
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-vue": "^9.16.1",
+    "husky": "^8.0.3",
+    "jsdom": "^22.1.0",
+    "lint-staged": "^13.2.3",
+    "npm": "^9.8.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.1",
+    "vitest": "^0.34.1",
+    "vue-tsc": "^1.8.8"
   },
   "peerDependencies": {
     "vue": "^3.2.0"

@@ -7,13 +7,11 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  esbuild: {
-    minify: true,
-  },
   build: {
+    minify: true,
     lib: {
       fileName: (type) => {
-        if (type === 'es') return 'esm/index.js';
+        if (type === 'es') return 'index.mjs';
         if (type === 'cjs') return 'index.js';
         return 'index.js';
       },
@@ -46,8 +44,5 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./setupTests.ts'],
-    transformMode: {
-      web: [/.[tj]sx$/],
-    },
   },
 });

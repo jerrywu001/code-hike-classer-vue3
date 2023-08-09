@@ -9,6 +9,12 @@ export default defineConfig({
   entry: [
     './src/index.ts',
   ],
+  outExtension({ format }) {
+    const extension = format === 'esm' ? '.mjs' : '.js';
+    return {
+      js: extension,
+    };
+  },
   target: 'es6',
   format: [
     'cjs',
@@ -17,7 +23,6 @@ export default defineConfig({
   shims: false,
   clean: true,
   dts: './src/index.ts',
-  legacyOutput: true,
   sourcemap: false,
   splitting: false,
   minify: true,
